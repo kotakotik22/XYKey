@@ -6,6 +6,7 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.event.TickEvent;
 
 import javax.annotation.Nonnull;
+import java.util.HashMap;
 
 public class SendPositionToSelf extends Keybind {
     @Nonnull
@@ -25,5 +26,13 @@ public class SendPositionToSelf extends Keybind {
         ClientPlayerEntity playerEntity = Minecraft.getInstance().player;
         assert playerEntity != null;
         playerEntity.sendStatusMessage(new StringTextComponent(playerEntity.getPosition().getCoordinatesAsString()), true);
+    }
+
+    @Override
+    public HashMap<String, String> getLangNames() {
+        HashMap<String, String> lang = new HashMap<>();
+        lang.put("en_us", "Show current position");
+        lang.put("ru_ru", "Показать текущую позицию");
+        return lang;
     }
 }

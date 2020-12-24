@@ -5,12 +5,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.TickEvent;
 
 import javax.annotation.Nonnull;
+import java.util.HashMap;
 
 public class SendWithName extends Keybind {
     @Nonnull
     @Override
     public String getName() {
-        return "send_position_witn_name";
+        return "send_position_with_name";
     }
 
     @Nonnull
@@ -22,5 +23,13 @@ public class SendWithName extends Keybind {
     @Override
     public void onPressed(TickEvent.ClientTickEvent event) {
         Minecraft.getInstance().displayGuiScreen(new SendWithNameScreen());
+    }
+
+    @Override
+    public HashMap<String, String> getLangNames() {
+        HashMap<String, String> lang = new HashMap<>();
+        lang.put("en_us", "Send current position with name");
+        lang.put("ru_ru", "Отправить текущую позицию с именем");
+        return lang;
     }
 }

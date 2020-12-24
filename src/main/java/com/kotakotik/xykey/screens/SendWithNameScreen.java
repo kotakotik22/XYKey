@@ -88,6 +88,6 @@ public class SendWithNameScreen extends Screen {
 
     public void sendToChat() {
         assert minecraft.player != null; // blah blah blah player might not exist blah blah blah
-        minecraft.player.sendChatMessage(nameField.getText() + " - " + minecraft.player.getPosition().getCoordinatesAsString());
+        minecraft.player.sendChatMessage(nameField.getText() + ": " + minecraft.player.getPosition().getCoordinatesAsString());
     }
 }
