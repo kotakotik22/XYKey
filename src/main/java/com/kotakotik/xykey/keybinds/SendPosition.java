@@ -15,8 +15,8 @@ public class SendPosition extends Keybind {
 
     @Nonnull
     @Override
-    public KeyCode getDefaultKey() {
-        return KeyCode.O;
+    public int getDefaultKey() {
+        return 79; // O
     }
 
     @Override
