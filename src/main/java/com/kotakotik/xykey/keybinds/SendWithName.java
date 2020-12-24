@@ -14,7 +14,6 @@ public class SendWithName extends Keybind {
         return "send_position_with_name";
     }
 
-    @Nonnull
     @Override
     public int getDefaultKey() {
         return 85; // U

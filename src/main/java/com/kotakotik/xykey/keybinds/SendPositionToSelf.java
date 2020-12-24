@@ -15,7 +15,6 @@ public class SendPositionToSelf extends Keybind {
         return "send_position_to_self";
     }
 
-    @Nonnull
     @Override
     public int getDefaultKey() {
         return 73; // I

@@ -11,8 +11,7 @@ import java.util.HashMap;
 public abstract class Keybind {
     @Nonnull
     public abstract String getName();
-    @Nonnull
-    public abstract int getDefaultKey(); // https://keycode.info/ to find keycodes
+    public abstract int getDefaultKey(); // https://keycode.info/ and https://www.glfw.org/docs/3.3/group__keys.html to find keycodes
     public abstract void onPressed(TickEvent.ClientTickEvent event);
     public abstract HashMap<String, String> getLangNames();
     public String getCategory() {
@@ -25,6 +24,7 @@ public abstract class Keybind {
         return "KEY."+ XYKey.MODID + "." + getName();
     }
     private KeyBinding keyBinding = createKeyBinding();
+    public void createTranslations() {}
 
     public KeyBinding getKeyBinding() {
         return keyBinding;

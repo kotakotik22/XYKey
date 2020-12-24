@@ -1,10 +1,6 @@
 package com.kotakotik.xykey;
 
-import com.kotakotik.xykey.keybinds.Keybind;
-import com.kotakotik.xykey.keybinds.SendPosition;
-import com.kotakotik.xykey.keybinds.SendPositionToSelf;
-import com.kotakotik.xykey.keybinds.SendWithName;
-import com.kotakotik.xykey.screens.SendWithNameScreen;
+import com.kotakotik.xykey.keybinds.*;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
@@ -16,11 +12,17 @@ public class Keybinds {
     public static final SendPosition sendPosition = new SendPosition();
     public static final SendPositionToSelf sendPositionToSelf = new SendPositionToSelf();
     public static final SendWithName sendWithName = new SendWithName();
+    public static final CopyPosition copyPosition = new CopyPosition();
+
+    public static final HashMap<String, HashMap<String, String>> keybindTranslations = new HashMap<>();
+    public static final HashMap<String, String> russian = new HashMap<>();
+    public static final HashMap<String, String> english = new HashMap<>();
 
     public static final Keybind[] keybinds = new Keybind[]{
             sendPosition,
             sendPositionToSelf,
-            sendWithName
+            sendWithName,
+            copyPosition
     };
 
     public static void register() {
@@ -28,7 +30,6 @@ public class Keybinds {
             try {
                 ClientRegistry.registerKeyBinding(keybind.getKeyBinding());
             } catch (NullPointerException ignored) {
-
             }
         }
     }
@@ -44,13 +45,26 @@ public class Keybinds {
      */
     public static void langAddTranslations(LanguageProvider provider, String locale) {
         for(Keybind keybind : keybinds) {
+            keybind.createTranslations();
             HashMap<String, String> translations = keybind.getLangNames();
             if(translations.containsKey(locale)) {
                 provider.add(keybind.createKeyString(), translations.get(locale));
             }
         }
-        if(SendWithNameScreen.getTitleTranslation().containsKey(locale)) {
-            provider.add(SendWithNameScreen.titleKey, SendWithNameScreen.getTitleTranslation().get(locale));
+
+        keybindTranslations.put("en_us", english);
+        keybindTranslations.put("ru_ru", russian);
+//        if(SendWithNameScreen.getTitleTranslation().containsKey(locale)) {
+//            provider.add(SendWithNameScreen.titleKey, SendWithNameScreen.getTitleTranslation().get(locale));
+//        }
+        for(String langTranslationKey : keybindTranslations.keySet()) {
+            HashMap<String, String> langTranslationHashMap = keybindTranslations.get(langTranslationKey);
+            if(locale.equals(langTranslationKey)) {
+                for(String transKey : langTranslationHashMap.keySet()) {
+                    String transValue = langTranslationHashMap.get(transKey);
+                    provider.add(transKey, transValue);
+                }
+            }
         }
         provider.add(createCategoryKey(), getCategoryKey());
     }

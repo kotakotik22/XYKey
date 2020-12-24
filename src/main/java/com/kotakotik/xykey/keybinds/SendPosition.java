@@ -13,7 +13,6 @@ public class SendPosition extends Keybind {
         return "send_position";
     }
 
-    @Nonnull
     @Override
     public int getDefaultKey() {
         return 79; // O
