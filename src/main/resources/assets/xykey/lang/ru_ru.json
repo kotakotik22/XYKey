@@ -1,0 +1,8 @@
+{
+  "CATEGORY.xykey.xykey": "XYKey",
+  "KEY.xykey.copy_position": "Скопировать позицию в буфер обмена",
+  "KEY.xykey.send_position": "Отправить позицию в чат",
+  "KEY.xykey.send_position_to_self": "Показать текущую позицию",
+  "KEY.xykey.send_position_with_name": "Отправить текущую позицию с именем",
+  "message.xykey_position_copied": "Позиция скопирована успешно!"
+}
