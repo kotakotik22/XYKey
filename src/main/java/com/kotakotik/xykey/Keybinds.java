@@ -4,6 +4,7 @@ import com.kotakotik.xykey.keybinds.Keybind;
 import com.kotakotik.xykey.keybinds.SendPosition;
 import com.kotakotik.xykey.keybinds.SendPositionToSelf;
 import com.kotakotik.xykey.keybinds.SendWithName;
+import com.kotakotik.xykey.screens.SendWithNameScreen;
 import net.minecraftforge.common.data.LanguageProvider;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 
@@ -38,12 +39,18 @@ public class Keybinds {
 //        return binding;
 //    }
 
+    /**
+     * Add all translations related to keybinds
+     */
     public static void langAddTranslations(LanguageProvider provider, String locale) {
         for(Keybind keybind : keybinds) {
             HashMap<String, String> translations = keybind.getLangNames();
             if(translations.containsKey(locale)) {
                 provider.add(keybind.createKeyString(), translations.get(locale));
             }
+        }
+        if(SendWithNameScreen.getTitleTranslation().containsKey(locale)) {
+            provider.add(SendWithNameScreen.titleKey, SendWithNameScreen.getTitleTranslation().get(locale));
         }
         provider.add(createCategoryKey(), getCategoryKey());
     }

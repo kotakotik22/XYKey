@@ -2,5 +2,6 @@
   "CATEGORY.xykey.xykey": "XYKey",
   "KEY.xykey.send_position": "Send position in chat",
   "KEY.xykey.send_position_to_self": "Show current position",
-  "KEY.xykey.send_position_with_name": "Send current position with name"
+  "KEY.xykey.send_position_with_name": "Send current position with name",
+  "message.xykey_title_send_with_name_screen": "Send with name"
 }

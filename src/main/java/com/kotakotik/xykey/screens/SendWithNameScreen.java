@@ -9,12 +9,14 @@ import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 
 public class SendWithNameScreen extends Screen {
     public SendWithNameScreen() {
@@ -28,7 +30,9 @@ public class SendWithNameScreen extends Screen {
         super.init();
         int relX = this.width /2;
         int relY = this.height /2;
-        nameField = new TextFieldWidget(font, relX + 10, relY + 40, 160, 20, new StringTextComponent("message.xykey_send_with_name_input"));
+        int nameFieldW = 160;
+        int nameFieldH = 20;
+        nameField = new TextFieldWidget(font, relX - nameFieldW / 2, relY - nameFieldH / 2, nameFieldW, nameFieldH, new StringTextComponent("message.xykey_send_with_name_input"));
         nameField.setText("");
         nameField.setFocused2(true);
         nameField.setVisible(true);
@@ -90,4 +94,15 @@ public class SendWithNameScreen extends Screen {
         assert minecraft.player != null; // blah blah blah player might not exist blah blah blah
         minecraft.player.sendChatMessage(nameField.getText() + ": " + minecraft.player.getPosition().getCoordinatesAsString());
     }
+
+    public static HashMap<String, String> getTitleTranslation() {
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("en_us", "Send with name");
+        map.put("ru_ru", "Отправить текущую позицию с именем");
+
+        return map;
+    }
+
+    public static final String titleKey = "message.xykey_title_send_with_name_screen";
 }
