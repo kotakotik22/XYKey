@@ -1,6 +1,5 @@
 package com.kotakotik.xykey.keybinds;
 
-import javafx.scene.input.KeyCode;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.TickEvent;
 

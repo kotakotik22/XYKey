@@ -1,7 +1,6 @@
 package com.kotakotik.xykey.keybinds;
 
-import com.example.examplemod.XYKey;
-import javafx.scene.input.KeyCode;
+import com.kotakotik.xykey.XYKey;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.event.TickEvent;
 
@@ -17,7 +16,7 @@ public abstract class Keybind {
         return "xykey";
     }
     private KeyBinding createKeyBinding() {
-        return new KeyBinding("KEY."+ XYKey.MODID + "." + getName(), getDefaultKey(), "KEY."+ com.example.examplemod.XYKey.MODID+"."+getCategory());
+        return new KeyBinding("KEY."+ XYKey.MODID + "." + getName(), getDefaultKey(), "KEY."+ XYKey.MODID+"."+getCategory());
     }
     private KeyBinding keyBinding = createKeyBinding();
 
