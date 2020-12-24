@@ -31,7 +31,6 @@ public class SendPositionToSelf extends Keybind {
     public HashMap<String, String> getLangNames() {
         HashMap<String, String> lang = new HashMap<>();
         lang.put("en_us", "Show current position");
-        lang.put("ru_ru", "Показать текущую позицию");
         return lang;
     }
 }

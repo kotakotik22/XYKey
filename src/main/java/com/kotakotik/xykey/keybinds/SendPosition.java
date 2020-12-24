@@ -27,7 +27,6 @@ public class SendPosition extends Keybind {
     public HashMap<String, String> getLangNames() {
         HashMap<String, String> lang = new HashMap<>();
         lang.put("en_us", "Send position in chat");
-        lang.put("ru_ru", "Отправить позицию в чат");
         return lang;
     }
 }

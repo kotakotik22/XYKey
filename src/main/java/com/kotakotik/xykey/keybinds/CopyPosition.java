@@ -41,7 +41,6 @@ public class CopyPosition extends Keybind {
         HashMap<String, String> map = new HashMap<>();
 
         map.put("en_us", "Copy position to clipboard");
-        map.put("ru_ru", "Скопировать позицию в буфер обмена");
 
         return map;
     }
@@ -51,6 +50,5 @@ public class CopyPosition extends Keybind {
     @Override
     public void createTranslations() {
         Keybinds.english.put(copiedKey, "Position successfully copied!");
-        Keybinds.russian.put(copiedKey, "Позиция скопирована успешно");
     }
 }

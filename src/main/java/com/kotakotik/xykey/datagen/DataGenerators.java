@@ -15,6 +15,7 @@ public class DataGenerators {
 //            generator.addProvider(new Models(generator, event.getExistingFileHelper()));
 //        LangGen.register();
         generator.addProvider(new EnglishTranslations(generator, XYKey.MODID, "en_us"));
-        generator.addProvider(new RussianTranslations(generator, XYKey.MODID, "ru_ru"));
+//        generator.addProvider(new RussianTranslations(generator, XYKey.MODID, "ru_ru"));
+        // the generator doesnt work at all with cyrillic
     }
 }

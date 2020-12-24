@@ -28,7 +28,6 @@ public class SendWithName extends Keybind {
     public HashMap<String, String> getLangNames() {
         HashMap<String, String> lang = new HashMap<>();
         lang.put("en_us", "Send current position with name");
-        lang.put("ru_ru", "Отправить текущую позицию с именем");
         return lang;
     }
 }
