@@ -99,7 +99,6 @@ public class SendWithNameScreen extends Screen {
         HashMap<String, String> map = new HashMap<>();
 
         map.put("en_us", "Send with name");
-        map.put("ru_ru", "Отправить текущую позицию с именем");
 
         return map;
     }
