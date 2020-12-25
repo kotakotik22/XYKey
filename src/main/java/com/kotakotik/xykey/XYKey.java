@@ -2,9 +2,11 @@ package com.kotakotik.xykey;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -42,7 +44,10 @@ public class XYKey
         // Register the doClientStuff method for modloading
 //        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-        Keybinds.register();
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> Keybinds::register);
+        DistExecutor.safeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> {
+            LOGGER.info("XYKey disabled because it is running on a server");
+        });
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
