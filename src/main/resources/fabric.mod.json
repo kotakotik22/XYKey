@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "xykey",
+  "version": "${version}",
+  "name": "XYKey",
+  "description": "",
+  "authors": [
+    "kotakotik22"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/xykey/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.kotakotik.xykey.client.XykeyClient"
+    ],
+    "main": [
+      "com.kotakotik.xykey.Xykey"
+    ]
+  },
+  "mixins": [
+    "xykey.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.1",
+    "fabric": "*",
+    "minecraft": "1.16.5"
+  }
+}
