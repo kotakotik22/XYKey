@@ -1,3 +1,5 @@
+THE FORGE VERSION IS NO LONGER BEING UPDATED. PLEASE USE THE FABRIC VERSION
+
 # XYKey
 A mod that adds keybinds that make it easier to manage coordinates
 
