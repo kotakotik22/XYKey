@@ -1,6 +1,7 @@
 plugins {
     id 'fabric-loom' version '0.6-SNAPSHOT'
     id 'maven-publish'
+    id "com.mendhak.gradlecrowdin" version "0.1.1"
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -94,4 +95,12 @@ publishing {
         // uncomment to publish to the local maven
         // mavenLocal()
     }
+}
+
+crowdinUpload {
+    apiKey = System.getenv("XYKEY_CROWDIN_KEY")
+    projectId = 'xykey'
+    files = [
+            [ name: 'en_us.json', source: 'run/rrp.debug/xykey;main/assets/lang/en_us.json' ]
+    ]
 }
