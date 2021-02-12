@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 public abstract class Keybind {
     public abstract String getName();
+    public abstract String getEnglish();
     public abstract int getDefaultKey(); // https://keycode.info/ and https://www.glfw.org/docs/3.3/group__keys.html to find keycodes
     public abstract void onPressed(MinecraftClient client);
-    public abstract HashMap<String, String> getLangNames();
     public String getCategory() {
         return Keybinds.createCategoryKey();
     }
@@ -22,7 +22,13 @@ public abstract class Keybind {
         return "KEY."+ Xykey.MODID + "." + getName();
     }
     private KeyBinding keyBinding = createKeyBinding();
-    public void createTranslations() {}
+    public void createTranslations(HashMap<String, String> map) {}
+
+    public HashMap<String, String> createTranslations() {
+        HashMap<String, String> map = new HashMap<>();
+        createTranslations(map);
+        return map;
+    }
 
     public KeyBinding getKeyBinding() {
         return keyBinding;

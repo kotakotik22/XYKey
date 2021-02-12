@@ -26,6 +26,11 @@ public class CopyPosition extends Keybind {
     }
 
     @Override
+    public String getEnglish() {
+        return "Copy position to clipboard";
+    }
+
+    @Override
     public int getDefaultKey() {
         return GLFW.GLFW_KEY_J;
     }
@@ -47,19 +52,10 @@ public class CopyPosition extends Keybind {
 //        minecraft.player.sendStatusMessage(new TranslationTextComponent(copiedKey), true);
 //    }
 
-    @Override
-    public HashMap<String, String> getLangNames() {
-        HashMap<String, String> map = new HashMap<>();
-
-        map.put("en_us", "Copy position to clipboard");
-
-        return map;
-    }
-
     public static final String copiedKey = "message.xykey_position_copied";
 
     @Override
-    public void createTranslations() {
-        Xykey.english.put(copiedKey, "Position successfully copied!");
+    public void createTranslations(HashMap<String, String> map) {
+        map.put(copiedKey, "Position successfully copied!");
     }
 }

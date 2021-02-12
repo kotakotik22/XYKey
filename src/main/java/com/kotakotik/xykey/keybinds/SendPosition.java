@@ -14,6 +14,11 @@ public class SendPosition extends Keybind {
     }
 
     @Override
+    public String getEnglish() {
+        return "Send position in chat";
+    }
+
+    @Override
     public int getDefaultKey() {
         return GLFW.GLFW_KEY_O;
     }
@@ -21,12 +26,5 @@ public class SendPosition extends Keybind {
     @Override
     public void onPressed(MinecraftClient client) {
         client.player.sendChatMessage(CoordinateUtils.coordinateString(client.player));
-    }
-
-    @Override
-    public HashMap<String, String> getLangNames() {
-        HashMap<String, String> lang = new HashMap<>();
-        lang.put("en_us", "Send position in chat");
-        return lang;
     }
 }

@@ -14,6 +14,11 @@ public class SendWithName extends Keybind {
     }
 
     @Override
+    public String getEnglish() {
+        return "Send current position with name";
+    }
+
+    @Override
     public int getDefaultKey() {
         return GLFW.GLFW_KEY_U;
     }
@@ -24,9 +29,7 @@ public class SendWithName extends Keybind {
     }
 
     @Override
-    public HashMap<String, String> getLangNames() {
-        HashMap<String, String> lang = new HashMap<>();
-        lang.put("en_us", "Send current position with name");
-        return lang;
+    public void createTranslations(HashMap<String, String> map) {
+        map.put("xykey.gui.send_with_name.suggestion", "What would you call these coordinates?");
     }
 }

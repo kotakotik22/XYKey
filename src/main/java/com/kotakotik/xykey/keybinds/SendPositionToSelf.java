@@ -16,6 +16,11 @@ public class SendPositionToSelf extends Keybind {
     }
 
     @Override
+    public String getEnglish() {
+        return "Show current position";
+    }
+
+    @Override
     public int getDefaultKey() {
         return GLFW.GLFW_KEY_I;
     }
@@ -23,12 +28,5 @@ public class SendPositionToSelf extends Keybind {
     @Override
     public void onPressed(MinecraftClient client) {
         client.player.sendMessage(new LiteralText(CoordinateUtils.coordinateString(client.player)), true);
-    }
-
-    @Override
-    public HashMap<String, String> getLangNames() {
-        HashMap<String, String> lang = new HashMap<>();
-        lang.put("en_us", "Show current position");
-        return lang;
     }
 }
