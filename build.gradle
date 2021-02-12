@@ -108,11 +108,32 @@ crowdinUpload {
 
 import com.modrinth.minotaur.TaskModrinthUpload
 
+def getvers = { ->
+    def ve = mod_version
+    if(ve.endsWith("SNAPSHOT")) {
+        ve += "-" + new Date().format("yy.MM.dd.HH")
+    }
+    return ve
+}
+
+def getchangelog = { ->
+    def gchangelog = project.file("changelog.md").getText()
+    if(release_type == "snapshot") {
+        gchangelog += "\n\nThis is a snapshot, it has not been tested."
+    } else if(release_type == "beta") {
+        gchangelog += "\n\nThis is a beta version, and it has been barely tested. If you find any issues, please report them on the [Github issues page](https://github.com/kotakotik22/xykey/issues)"
+    }
+    return gchangelog
+}
+
 task publishModrinth (type: TaskModrinthUpload) {
     token = System.getenv("MODRINTH_TOKEN") // Use an environment property if releasing your source code on GitHub!
     projectId = '5wbI4ZfZ' // The ID of your modrinth project, slugs will not work.
-    versionNumber = mod_version // The version of the mod to upload.
+    versionNumber = getvers() // The version of the mod to upload.
+    versionName = getvers()
     uploadFile = remapJar // This links to a task that builds your mod jar and sets "uploadFile" to the mod jar.
     addGameVersion('1.16.5') // Any minecraft version.
     addLoader('fabric') // Can be fabric or forge. Modrinth will support liteloader and rift at a later date.
+    releaseType = release_type
+    changelog = getchangelog()
 }
