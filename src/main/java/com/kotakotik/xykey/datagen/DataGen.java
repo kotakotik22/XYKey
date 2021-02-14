@@ -7,11 +7,16 @@ import java.io.File;
 import java.nio.file.Paths;
 
 public class DataGen {
+    public static final boolean dump = false;
+
     public static void gen() {
         File dir = new File("xykey");
         dir.mkdirs();
         LangGen.reg();
-        Xykey.RESOURCE_PACK.dump();
+
+        if(dump) {
+            Xykey.RESOURCE_PACK.dump();
+        }
         RRPCallback.EVENT.register(a -> a.add(Xykey.RESOURCE_PACK));
     }
 }
