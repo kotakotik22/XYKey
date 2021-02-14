@@ -2,7 +2,6 @@ package com.kotakotik.xykey;
 
 import com.kotakotik.xykey.client.Keybind;
 import com.kotakotik.xykey.client.Keybinds;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.text.LiteralText;
 

@@ -24,6 +24,7 @@ repositories {
     maven {
         url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
     }
+    jcenter()
 }
 
 dependencies {
@@ -40,7 +41,8 @@ dependencies {
     modImplementation "de.guntram.mcmod:crowdin-translate:1.2"
     include "de.guntram.mcmod:crowdin-translate:1.2"
 
-    modImplementation group: 'net.devtech', name: 'arrp', version: '0.3.7'
+    modImplementation "com.lettuce.fudge:artifice:0.14.6+1.16.5"
+    include "com.lettuce.fudge:artifice:0.14.6+1.16.5"
 
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.
@@ -103,7 +105,7 @@ crowdinUpload {
     apiKey = System.getenv("XYKEY_CROWDIN_KEY")
     projectId = 'xykey'
     files = [
-            [ name: 'en_us.json', source: 'run/rrp.debug/xykey;main/assets/lang/en_us.json' ]
+            [ name: 'en_us.json', source: 'run/xykey/en_us.json' ]
     ]
 }
 
