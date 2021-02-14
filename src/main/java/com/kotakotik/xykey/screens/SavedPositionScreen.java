@@ -91,6 +91,7 @@ public class SavedPositionScreen extends CottonClientScreen {
 
             {
                 File dir = new File("xykey/saved_pos");
+                dir.mkdirs();
 
                 List<SavePosition.SavedPosition> positionList = new ArrayList<>();
 
