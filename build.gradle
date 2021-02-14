@@ -132,13 +132,14 @@ task publishModrinth (type: TaskModrinthUpload) {
     projectId = '5wbI4ZfZ'
     versionNumber = getvers()
     versionName = getvers()
-    uploadFile = remapJar
+    uploadFile = "${project.buildDir.absolutePath}/libs/xykey-${mod_version}.jar"
     for(String vers : project.file("mcversions.txt").getText().split(",")) {
         addGameVersion(vers)
     }
     addLoader('fabric')
     releaseType = release_type
     changelog = getchangelog()
+    dependsOn(remapJar)
 }
 
 curseforge {
