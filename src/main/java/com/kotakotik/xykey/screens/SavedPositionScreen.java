@@ -114,6 +114,7 @@ public class SavedPositionScreen extends CottonClientScreen {
                             break;
                         case "minecraft:the_end":
                             dim = new TranslatableText("xykey.dimension.end");
+                            break;
                         case "minecraft:the_nether":
                             dim = new TranslatableText("xykey.dimension.nether");
                     }
