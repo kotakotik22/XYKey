@@ -12,13 +12,17 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
 
+import javax.swing.text.DateFormatter;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BiConsumer;
@@ -49,6 +53,8 @@ public class SavedPositionScreen extends CottonClientScreen {
                 WButton dimension;
                 WButton coords;
                 WButton date;
+                WButton delete;
+                String dateStr;
 
                 public ListItem() {
                     MinecraftClient client = MinecraftClient.getInstance();
@@ -84,6 +90,22 @@ public class SavedPositionScreen extends CottonClientScreen {
                         }
                     };
                     add(date, 0, 60, 200, 18);
+                    delete = new WButton(new TranslatableText("menu.xykey.delete")) {
+                        @Override
+                        public void onClick(int x, int y, int button) {
+                            super.onClick(x, y, button);
+                            File file = null;
+                            file = new File("xykey/saved_pos/" + dateStr + ".json");
+                            System.out.println(file.getAbsolutePath());
+                            file.delete();
+                            try {
+                                MinecraftClient.getInstance().openScreen(new SavedPositionScreen()); // reload gui
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    add(delete, 50, 80, 100, 18);
 
                     this.setSize(1, 2*18);
                 }
@@ -126,11 +148,12 @@ public class SavedPositionScreen extends CottonClientScreen {
                         e.printStackTrace();
                         item.date.setLabel(new LiteralText("error while trying to get date"));
                     }
+                    item.dateStr = pos.date;
                 };
 
                 if(!positionList.isEmpty()) {
                     WListPanel<SavePosition.SavedPosition, ListItem> list = new WListPanel<>(positionList, ListItem::new, configurator);
-                    list.setListItemHeight(90);
+                    list.setListItemHeight(120);
                     list.setSize(220, 150);
                     setRootPanel(list);
 //                root.add(list, 0, 0, 10, 10)

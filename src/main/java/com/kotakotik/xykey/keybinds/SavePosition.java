@@ -103,5 +103,6 @@ public class SavePosition extends Keybind {
         map.put("xykey.dimension.nether", "Nether");
         map.put("xykey.dimension.end", "The end");
         map.put("menu.xykey.saved_pos.no_saved", "No positions saved! Press %s to create one.");
+        map.put("menu.xykey.delete", "Delete");
     }
 }
