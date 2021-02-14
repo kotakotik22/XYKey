@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import com.kotakotik.xykey.client.Keybind;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
 import org.lwjgl.glfw.GLFW;
@@ -90,6 +91,7 @@ public class SavePosition extends Keybind {
                     date,
                     client.player.world.getDimension().getSkyProperties().toString()
             )));
+            client.player.sendMessage(new TranslatableText("message.xykey_position_saved"), true);
         } catch (IOException e) {
             e.printStackTrace();
             client.player.sendMessage(new LiteralText("" + Formatting.RED + Formatting.BOLD + "Error while trying to save position file! Check logs"), false);
@@ -104,5 +106,6 @@ public class SavePosition extends Keybind {
         map.put("xykey.dimension.end", "The end");
         map.put("menu.xykey.saved_pos.no_saved", "No positions saved! Press %s to create one.");
         map.put("menu.xykey.delete", "Delete");
+        map.put("message.xykey_position_saved", "Successfully saved position!");
     }
 }
