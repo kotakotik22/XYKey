@@ -1,0 +1,5 @@
+- Add "Save position" keybind
+- Add screen that lets you see saved positions
+- Switch from [ARRP](https://github.com/Devan-Kerman/ARRP) to [Artifice](https://github.com/natanfudge/artifice)
+- Make keybinds only trigger the first time they are pressed, and not constantly while pressed
+- Add icon
