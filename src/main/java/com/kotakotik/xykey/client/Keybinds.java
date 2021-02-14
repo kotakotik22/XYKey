@@ -1,10 +1,7 @@
 package com.kotakotik.xykey.client;
 
 import com.kotakotik.xykey.Xykey;
-import com.kotakotik.xykey.keybinds.CopyPosition;
-import com.kotakotik.xykey.keybinds.SendPosition;
-import com.kotakotik.xykey.keybinds.SendPositionToSelf;
-import com.kotakotik.xykey.keybinds.SendWithName;
+import com.kotakotik.xykey.keybinds.*;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.options.KeyBinding;
 import net.minecraft.client.util.InputUtil;
@@ -17,12 +14,14 @@ public class Keybinds {
     public static final Keybind sendPosition = new SendPosition();
     public static final Keybind sendPositionToSelf = new SendPositionToSelf();
     public static final Keybind sendWithName = new SendWithName();
+    public static final Keybind savePosition = new SavePosition();
 
     public static final Keybind[] keybinds = new Keybind[]{
             copyPosition,
             sendPosition,
             sendPositionToSelf,
-            sendWithName
+            sendWithName,
+            savePosition
     };
 
     static {
