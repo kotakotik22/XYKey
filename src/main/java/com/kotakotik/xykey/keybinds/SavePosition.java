@@ -7,16 +7,14 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.dimension.DimensionType;
 import org.lwjgl.glfw.GLFW;
 
-import javax.swing.text.DateFormatter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 
 public class SavePosition extends Keybind {
     public static class SavedPosition {
@@ -33,20 +31,24 @@ public class SavePosition extends Keybind {
         @SerializedName("dimension")
         public String dimension;
 
-        public SavedPosition(int x, int y, int z, String date, String dimension) {
+        @SerializedName("name")
+        public String name;
+
+        public SavedPosition(int x, int y, int z, String date, String dimension, String name) {
             this.x = x;
             this.y = y;
             this.z = z;
             this.date = date;
             this.dimension = dimension;
+            this.name = name;
         }
 
         public SavedPosition(int x, int y, int z, Date date, String dimension) {
-            this(x, y, z, format.format(date), dimension);
+            this(x, y, z, format.format(date), dimension, "Untitled");
         }
 
         public SavedPosition(Vec3d pos, String date, String dimension) {
-            this((int)pos.getX(), (int)pos.getY(), (int)pos.getZ(), date, dimension);
+            this((int)pos.getX(), (int)pos.getY(), (int)pos.getZ(), date, dimension, "Untitled");
         }
 
         public SavedPosition(Vec3d pos, Date date, String dimension) {
@@ -92,5 +94,13 @@ public class SavePosition extends Keybind {
             e.printStackTrace();
             client.player.sendMessage(new LiteralText("" + Formatting.RED + Formatting.BOLD + "Error while trying to save position file! Check logs"), false);
         }
+    }
+
+    @Override
+    public void createTranslations(HashMap<String, String> map) {
+        map.put("menu.xykey.saved_pos", "Saved XYK positions");
+        map.put("xykey.dimension.overworld", "Overworld");
+        map.put("xykey.dimension.nether", "Nether");
+        map.put("xykey.dimension.end", "The end");
     }
 }
