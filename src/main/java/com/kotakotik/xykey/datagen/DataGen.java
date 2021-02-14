@@ -5,8 +5,6 @@ import com.kotakotik.xykey.client.XykeyClient;
 import java.io.File;
 
 public class DataGen {
-    public static final boolean dump = false;
-
     public static void gen() {
         File dir = new File("xykey");
         dir.mkdirs();

@@ -1,11 +1,13 @@
 package com.kotakotik.xykey.screens;
 
 import com.google.gson.Gson;
+import com.kotakotik.xykey.client.Keybinds;
 import com.kotakotik.xykey.keybinds.SavePosition;
 import com.kotakotik.xykey.utils.CoordinateUtils;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
+import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
@@ -124,14 +126,23 @@ public class SavedPositionScreen extends CottonClientScreen {
                     }
                 };
 
-                WListPanel<SavePosition.SavedPosition, ListItem> list = new WListPanel<>(positionList, ListItem::new, configurator);
-                list.setListItemHeight(90);
-                list.setSize(220, 150);
-                setRootPanel(list);
+                if(!positionList.isEmpty()) {
+                    WListPanel<SavePosition.SavedPosition, ListItem> list = new WListPanel<>(positionList, ListItem::new, configurator);
+                    list.setListItemHeight(90);
+                    list.setSize(220, 150);
+                    setRootPanel(list);
 //                root.add(list, 0, 0, 10, 10)
 //                ;
 
-                rootPanel.validate(this);
+                    rootPanel.validate(this);
+                } else {
+                    WGridPanel root = new WGridPanel();
+                    setRootPanel(root);
+                    root.setSize(220, 150);
+                    WLabel label = new WLabel(new TranslatableText("menu.xykey.saved_pos.no_saved", Keybinds.savePosition.getKeyBinding().getBoundKeyLocalizedText()));
+                    label.setHorizontalAlignment(HorizontalAlignment.LEFT);
+                    root.add(label, 0, 1);
+                }
             }
         });
     }
