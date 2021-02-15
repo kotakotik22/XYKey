@@ -146,7 +146,7 @@ task publishModrinth (type: TaskModrinthUpload) {
 
 curseforge {
     project {
-        id = '446123'
+        id = '447102'
         changelog = getchangelog
         releaseType = release_type
         changelogType = "markdown"
