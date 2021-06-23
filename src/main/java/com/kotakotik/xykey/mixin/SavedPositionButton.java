@@ -22,7 +22,7 @@ public abstract class SavedPositionButton extends Screen {
 
     @Inject(at = @At("RETURN"), method = "initWidgets")
     private void addCustomButton(CallbackInfo ci) {
-        addButton(new ButtonWidget(0, this.height - 20, 120, 20, new TranslatableText("menu.xykey.saved_pos"), (buttonWidgetx) -> {
+        addDrawableChild(new ButtonWidget(0, this.height - 20, 120, 20, new TranslatableText("menu.xykey.saved_pos"), (buttonWidgetx) -> {
             try {
                 MinecraftClient.getInstance().openScreen(new SavedPositionScreen());
             } catch (IOException e) {

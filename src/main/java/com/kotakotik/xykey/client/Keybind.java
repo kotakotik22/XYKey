@@ -3,7 +3,7 @@ package com.kotakotik.xykey.client;
 import com.kotakotik.xykey.Xykey;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.options.KeyBinding;
+import net.minecraft.client.option.KeyBinding;
 
 import java.util.HashMap;
 

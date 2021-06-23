@@ -8,21 +8,18 @@ import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
+import io.github.cottonmc.cotton.gui.widget.data.InputResult;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Formatting;
 
-import javax.swing.text.DateFormatter;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BiConsumer;
@@ -60,39 +57,43 @@ public class SavedPositionScreen extends CottonClientScreen {
                     MinecraftClient client = MinecraftClient.getInstance();
                     name = new WButton(new LiteralText("svelte > react")) {
                         @Override
-                        public void onClick(int x, int y, int button) {
+                        public InputResult onClick(int x, int y, int button) {
                             super.onClick(x, y, button);
                             client.keyboard.setClipboard(getLabel().getString());
+                            return InputResult.PROCESSED;
                         }
                     };
                     add(name, 0, 0, 200, 18);
                     dimension = new WButton(new LiteralText("overworld")) {
                         @Override
-                        public void onClick(int x, int y, int button) {
+                        public InputResult onClick(int x, int y, int button) {
                             super.onClick(x, y, button);
                             client.keyboard.setClipboard(getLabel().getString());
+                            return InputResult.PROCESSED;
                         }
                     };
                     add(dimension, 0, 20, 200, 18);
                     coords = new WButton(new LiteralText("0, 0, 0")) {
                         @Override
-                        public void onClick(int x, int y, int button) {
+                        public InputResult onClick(int x, int y, int button) {
                             super.onClick(x, y, button);
                             client.keyboard.setClipboard(getLabel().getString());
+                            return InputResult.PROCESSED;
                         }
                     };
                     add(coords, 0, 40, 200, 18);
                     date = new WButton(new LiteralText("November 26, 2016")) {
                         @Override
-                        public void onClick(int x, int y, int button) {
+                        public InputResult onClick(int x, int y, int button) {
                             super.onClick(x, y, button);
                             client.keyboard.setClipboard(getLabel().getString());
+                            return InputResult.PROCESSED;
                         }
                     };
                     add(date, 0, 60, 200, 18);
                     delete = new WButton(new TranslatableText("menu.xykey.delete")) {
                         @Override
-                        public void onClick(int x, int y, int button) {
+                        public InputResult onClick(int x, int y, int button) {
                             super.onClick(x, y, button);
                             File file = null;
                             file = new File("xykey/saved_pos/" + dateStr + ".json");
@@ -103,6 +104,7 @@ public class SavedPositionScreen extends CottonClientScreen {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                           return InputResult.PROCESSED;
                         }
                     };
                     add(delete, 50, 80, 100, 18);

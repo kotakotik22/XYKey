@@ -9,7 +9,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 import org.lwjgl.glfw.GLFW;
-import sun.awt.datatransfer.ClipboardTransferable;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;

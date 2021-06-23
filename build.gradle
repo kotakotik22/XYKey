@@ -1,13 +1,13 @@
 plugins {
-    id 'fabric-loom' version '0.6-SNAPSHOT'
+    id 'fabric-loom' version '0.9-SNAPSHOT'
     id 'maven-publish'
     id "com.mendhak.gradlecrowdin" version "0.1.1"
     id "com.modrinth.minotaur" version "1.1.0"
     id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+sourceCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_16
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
@@ -25,6 +25,7 @@ repositories {
         url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
     }
     jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -38,11 +39,11 @@ dependencies {
 
     modImplementation include("io.github.cottonmc:LibGui:${project.libgui_version}")
 
-    modImplementation "de.guntram.mcmod:crowdin-translate:1.2"
-    include "de.guntram.mcmod:crowdin-translate:1.2"
+    modImplementation "de.guntram.mcmod:crowdin-translate:${project.crowdin_translate_version}"
+    include "de.guntram.mcmod:crowdin-translate:${project.crowdin_translate_version}"
 
-    modImplementation "com.lettuce.fudge:artifice:0.14.6+1.16.5"
-    include "com.lettuce.fudge:artifice:0.14.6+1.16.5"
+    modImplementation "com.lettuce.fudge:artifice:${project.artifice_version}"
+    include "com.lettuce.fudge:artifice:${project.artifice_version}"
 
     // PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
     // You may need to force-disable transitiveness on them.
@@ -51,13 +52,8 @@ dependencies {
 processResources {
     inputs.property "version", project.version
 
-    from(sourceSets.main.resources.srcDirs) {
-        include "fabric.mod.json"
+    filesMatching("fabric.mod.json") {
         expand "version": project.version
-    }
-
-    from(sourceSets.main.resources.srcDirs) {
-        exclude "fabric.mod.json"
     }
 }
 
@@ -129,6 +125,13 @@ def getchangelog = { ->
     return gchangelog
 }
 
+def getreleasetype = { ->
+    if(release_type == "SNAPSHOT") {
+        return "alpha" // just so gradle stops complaining about SNAPSHOT not being a valid release type
+    }
+    return release_type;
+}
+
 task publishModrinth (type: TaskModrinthUpload) {
     token = System.getenv("MODRINTH_TOKEN")
     projectId = '5wbI4ZfZ'
@@ -148,7 +151,7 @@ curseforge {
     project {
         id = '447102'
         changelog = getchangelog
-        releaseType = release_type
+        releaseType = getreleasetype
         changelogType = "markdown"
         apiKey = System.getenv("CURSEFORGE_KEY")
 
